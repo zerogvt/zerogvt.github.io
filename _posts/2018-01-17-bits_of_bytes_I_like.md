@@ -5,3 +5,5 @@
   
 * Initialize a list with a map function: `map( lambda x: x+1, range(3) ) ==> [1, 2, 3]`
 
+* a list of n zeros: `[0] * n`
+
