@@ -7,3 +7,5 @@
 
 * a list of n zeros: `[0] * n`
 
+* exchange values of two vars: `a, b = b, a`
+
