@@ -1,3 +1,4 @@
+### Python bites
 * Count specific elements in list: `len([x for x in mylist if x==value])`
 
 * Create a 2D matrix: `Matrix = [ [0 for x in range(cols)] for y in range(rows)]`
@@ -9,3 +10,10 @@
 
 * exchange values of two vars: `a, b = b, a`
 
+
+# git bites
+* Squash (already pushed) 3 commits:
+`git rebase -i upstream/onboarding~3 onboarding` (watch the tilde `~`)
+(replace `pick` with `fixup`)
+`git push -u upstream +onboarding` (watch the `+`)
+more: https://stackoverflow.com/questions/5667884/how-to-squash-commits-in-git-after-they-have-been-pushed
