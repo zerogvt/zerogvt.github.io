@@ -1,4 +1,4 @@
-### Python bites
+### Python
 * Count specific elements in list: `len([x for x in mylist if x==value])`
 
 * Create a 2D matrix: `Matrix = [ [0 for x in range(cols)] for y in range(rows)]`
@@ -13,7 +13,7 @@
 * [`*, **`]( https://stackoverflow.com/questions/36901/what-does-double-star-asterisk-and-star-asterisk-do-for-parameters)
 
 
-# git bites
+# git
 * Squash (already pushed) 3 commits:
 `git rebase -i upstream/onboarding~3 onboarding` (watch the tilde `~`)
 (replace `pick` with `fixup`)
