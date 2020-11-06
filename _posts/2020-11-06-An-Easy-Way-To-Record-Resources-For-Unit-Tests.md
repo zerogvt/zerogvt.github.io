@@ -76,4 +76,4 @@ Now. Coming back to the initial senario of you making an intentional change to y
     $> RECORD_TESTS=yes pytest
     $> pytest
 
-The first command sets the env var just until the completion of the command so you can rest assured that the env var won't exist after it, thus your tests will run in the normal non-recording mode.
+The first command sets the env var just until the completion of the command so you can rest assured that the env var won't exist after it. So any subsequent tests run is done in the normal non-recording mode.
