@@ -45,7 +45,7 @@ Then inside the relevant test in `test_stuff.py` you can have something like:
         have = render(template, config)
 
         # if in RECORD mode capture what we got in resources file
-        if RECORD:
+        if RECORD and RECORD == "yes:
             with open(test_resource, 'w+') as outf:
                 outf.write(have)
 
@@ -58,12 +58,12 @@ So when `RECORD` is set to a "truthy" value what happens is that the output of t
 
 BUT
 
-When `RECORD` is "truthy" the test will always pass. So it should be set in a manner that won't accidentally leave it "on" inside yopur CICD pipelines.
+When `RECORD` is "truthy" the test will always pass. So it should be set in a manner that won't accidentally leave it "on" inside your CI pipelines.
 
 An easy way to do that is to have it getting a value off your environment and do 
 that once and for all tests. That's what the funny import 
     from .__init__ import RECORD 
-does. And the value is set in the `tests\__init__.py` file like:
+does. And the value is read once for all tests in the `tests\__init__.py` file:
 
 
     import os
@@ -71,9 +71,9 @@ does. And the value is set in the `tests\__init__.py` file like:
     RECORD = os.getenv("RECORD_TESTS")
 
 
-Assuming that your CICD engineer (which is probably you wearing the CICD hat) has a good overview of the env vars that live in his pipeline we can assume that the conspicuous variable `RECORD_TESTS` won't be set there.
+Assuming that your CI engineer (which is probably you wearing your CI hat) has a good overview of the env vars that live in his pipeline, we can assume that the conspicuous variable `RECORD_TESTS` won't be set there or at least it won't be set by accident.
 
-Now. Coming back to the initial senario of you making an intentional change to your function you can run your tests once with that env var set -thus recording the new outputs- and then rerun your tests to make sure everything looks good.
+Now. Coming back to the initial senario of you making an intentional change to your function you can then run your tests once with `RECORD_TESTS` env var set -thus recording the new outputs- and then rerun your tests to make sure everything looks good.
 
     $> RECORD_TESTS=yes pytest
     $> pytest
