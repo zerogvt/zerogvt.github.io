@@ -45,7 +45,7 @@ Then inside the relevant test in `test_stuff.py` you can have something like:
         have = render(template, config)
 
         # if in RECORD mode capture what we got in resources file
-        if RECORD and RECORD == "yes:
+        if RECORD and RECORD == "yes":
             with open(test_resource, 'w+') as outf:
                 outf.write(have)
 
