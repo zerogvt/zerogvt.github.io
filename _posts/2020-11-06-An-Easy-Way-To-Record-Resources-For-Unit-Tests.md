@@ -58,7 +58,7 @@ So when `RECORD` is set to a "truthy" value what happens is that the output of t
 
 BUT
 
-When `RECORD` is "truthy" the test will always pass. So it should be set in a manner that won't accidentally leave it "on" inside your CI pipelines.
+Now when `RECORD` is set to "yes" the test will always pass. So it should be set in a manner that won't accidentally leave it "on" inside your CI pipelines.
 
 An easy way to do that is to have it getting a value off your environment and do 
 that once and for all tests. That's what the funny import 
