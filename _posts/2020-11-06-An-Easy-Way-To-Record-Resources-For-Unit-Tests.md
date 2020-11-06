@@ -7,7 +7,7 @@ That is fine and it works for some time. Untill you change something and the out
 
 Instead you can employ a simple trick to have the tests actually do that for you.
 
-Assume next (typical) state of affairs for you project:
+Assume next typical folder structure of a (python) project:
 
     proj/
         stuff/
