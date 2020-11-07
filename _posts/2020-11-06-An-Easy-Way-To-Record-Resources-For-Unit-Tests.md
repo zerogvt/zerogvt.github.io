@@ -75,9 +75,10 @@ does. And the value is set from the environment in the `tests\__init__.py` file:
 
 Assuming that your CI engineer (which is probably you wearing your CI hat) has a good overview of the env vars that live in his pipeline, we can assume that the conspicuous variable `RECORD_TESTS` won't be set there or at least it won't be set by accident.
 
-Now. Coming back to the initial senario of you making an intentional change to your function you can then run your tests once locally with `RECORD_TESTS` env var set -thus recording the new outputs- and then rerun your tests to make sure everything looks good.
+Back to the initial senario of you making an intentional change to your function. You can now run your tests once locally with `RECORD_TESTS` env var set -thus recording the new outputs- and then rerun your tests to make sure everything looks good.
 
     $> RECORD_TESTS=yes pytest
+    ...
     $> pytest
 
-The first command sets the env var just until the completion of the command so you can rest assured that the env var won't exist after it. So any subsequent tests run is done in the normal non-recording mode. Finally you can push to your code repo the new test resources along with the code changes.
+The first command sets the env var just until the completion of the command so you can rest assured that the env var won't exist after it. Thus, any subsequent tests run is done in the normal non-recording mode. Having the changes in and the updated tests passing you can push all the changes to your code repo and go for a nice walk.
