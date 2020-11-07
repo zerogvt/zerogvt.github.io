@@ -36,7 +36,7 @@ And say that your long output function lies in `stuff.py` and looks like:
 
 Then inside the relevant test in `test_stuff.py` you can have something like:
 
-    from .__init__ import RECORD
+    from .__init__ import record_tests
 
     def test_render(self):
         test_resource = 'resources/out'
@@ -44,8 +44,8 @@ Then inside the relevant test in `test_stuff.py` you can have something like:
         config = {'name': 'val', 'other_name': 'val'}
         have = render(template, config)
 
-        # if in RECORD mode capture what we got in resources file
-        if RECORD and RECORD == "yes":
+        # if in record_tests mode capture what we got in resources file
+        if record_tests and record_tests == "yes":
             with open(test_resource, 'w+') as outf:
                 outf.write(have)
 
@@ -54,28 +54,30 @@ Then inside the relevant test in `test_stuff.py` you can have something like:
         self.assertEqual(have, want)
 
 
-So when `RECORD` is set to a "truthy" value what happens is that the output of the function is saved as the test_resource. This saves us the trouble of going over the produce-save-copy process.
+So when `record_tests` is set to "yes" the output of the tested function is saved as the test_resource. This saves us the trouble of going over the produce-save-copy process.
 
 BUT
 
-Now when `RECORD` is set to "yes" the test will always pass. So it should be set in a manner that won't accidentally leave it "on" inside your CI pipelines.
+When `record_tests` is set to "yes" the test will always pass thus rendering it useless. So it should be set in a manner that won't accidentally leave it "on" inside your CI pipelines.
 
 An easy way to do that is to have it getting a value off your environment and do 
 that once and for all tests. That's what the funny import 
-    from .__init__ import RECORD 
-does. And the value is read once for all tests in the `tests\__init__.py` file:
+
+    from .__init__ import record_tests
+
+does. And the value is set from the environment in the `tests\__init__.py` file:
 
 
     import os
 
-    RECORD = os.getenv("RECORD_TESTS")
+    record_tests = os.getenv("RECORD_TESTS")
 
 
 Assuming that your CI engineer (which is probably you wearing your CI hat) has a good overview of the env vars that live in his pipeline, we can assume that the conspicuous variable `RECORD_TESTS` won't be set there or at least it won't be set by accident.
 
-Now. Coming back to the initial senario of you making an intentional change to your function you can then run your tests once with `RECORD_TESTS` env var set -thus recording the new outputs- and then rerun your tests to make sure everything looks good.
+Now. Coming back to the initial senario of you making an intentional change to your function you can then run your tests once locally with `RECORD_TESTS` env var set -thus recording the new outputs- and then rerun your tests to make sure everything looks good.
 
     $> RECORD_TESTS=yes pytest
     $> pytest
 
-The first command sets the env var just until the completion of the command so you can rest assured that the env var won't exist after it. So any subsequent tests run is done in the normal non-recording mode.
+The first command sets the env var just until the completion of the command so you can rest assured that the env var won't exist after it. So any subsequent tests run is done in the normal non-recording mode. Finally you can push to your code repo the new test resources along with the code changes.
