@@ -1,4 +1,4 @@
-Test Driven Design (TDD) is a programming methodology that has had quite a few vocal supporters up untill a few years ago.
+Test Driven Design (TDD) is a programming methodology that has had quite a few vocal supporters at least up untill a few years ago.
 In recent years though it seems like it's going out of favor and I think I understand why.
 
 TDD is basically programming _by_ unit tests. Say you want to write a method XXX with inputs A, B and 
