@@ -5,8 +5,8 @@ TDD is basically programming _by_ unit tests. Say you want to write a method XXX
 result C. Instead of going ahead and implement the method you first write a unit test that is testing the method: 
 
     def Test_X(self):
-        # this will fail with XXX
-        self.assertEqual(wanted_output, XXX(A, B))
+        # this fails without the correct XXX implementation
+        self.assertEqual(wanted_output, XXX(a, b))
 
 Now, with XXX actually missing, that test will fail untill you implement XXX and you implement it correct at least 
 as far as the unit test is concerned.
