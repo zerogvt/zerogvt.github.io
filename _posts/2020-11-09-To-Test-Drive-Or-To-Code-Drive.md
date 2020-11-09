@@ -4,9 +4,8 @@ In recent years though it seems like it's going out of favor and I think I under
 TDD is basically programming _by_ unit tests. Say you want to write a method XXX with inputs A, B and 
 result C. Instead of going ahead and implement the method you first write a unit test that is testing the method: 
 
-    Test_X(self):
-        A = a_value
-        B = b_value
+    def Test_X(self):
+        # this will fail with XXX
         self.assertEqual(wanted_output, XXX(A, B))
 
 Now, with XXX actually missing, that test will fail untill you implement XXX and you implement it correct at least 
